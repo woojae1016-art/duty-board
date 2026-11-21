@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>늘샘교회 교역자 업무분장</title>
+  <meta name="description" content="2026 늘샘교회 교역자 공통업무 분장표 — 누가 무엇을 언제 맡는지 한눈에 보고 함께 고칩니다.">
+  <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d1c1a'/%3E%3Cpath d='M9 9h14M9 16h14M9 23h9' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+</head>
+<body>
+<div class="nb" id="nb">
+  <div class="nb-topbar" id="topbar">
+    <span class="nb-brand">늘샘교회 업무분장</span>
+    <span class="nb-live" id="live-status" data-state="connecting"><i></i><span id="live-text">연결 중</span></span>
+    <button type="button" class="nb-editor-btn" id="editor-btn" aria-label="수정하는 분 이름 바꾸기">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3.2"/><path d="M3.5 17c.9-3.2 3.4-4.8 6.5-4.8s5.6 1.6 6.5 4.8"/></svg>
+      <span id="editor-name">이름 정하기</span>
+    </button>
+  </div>
+
+  <p class="nb-banner" id="demo-banner" hidden>지금은 <b>예시 모드</b>입니다. Supabase에 연결하기 전이라 고친 내용은 이 브라우저를 새로 고치면 사라져요.</p>
+  <p class="nb-banner is-bad" id="load-error" hidden></p>
+
+  <header class="nb-head" id="head">
+    <p class="nb-eyebrow"><span>작성일 2026.11.20</span><span>카테고리 = 2027 위원회 조직 기준</span><span>부서 사역(유년부 등) 제외</span></p>
+    <h1 class="nb-title">2026 교역자 공통업무 분장표</h1>
+    <p class="nb-lede">공통업무 <b data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=전체">—</b>개 가운데 <b class="t-ok" data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=확정">—</b>개는 담당이 확정됐고, <b data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=미확정">—</b>개는 아직 정해야 합니다. 담당자가 비어 있는 업무가 <b class="t-bad" data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=미배정">—</b>개, 담당이나 주기를 확인해야 하는 업무가 <b class="t-warn" data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=확인필요">—</b>개입니다.</p>
+  </header>
+
+  <section class="nb-summary" id="summary" aria-label="상태 요약">
+    <div class="nb-kpis">
+      <div class="nb-kpi" id="kpi-total">
+        <span class="nb-kpi-label">전체 업무</span>
+        <span class="nb-kpi-num"><span data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=전체">—</span><small>건</small></span>
+        <span class="nb-kpi-sub">교역자·행정간사 공통업무</span>
+      </div>
+      <button type="button" class="nb-kpi is-ok" id="kpi-ok" data-status-jump="확정">
+        <span class="nb-kpi-label"><i class="nb-dot ok"></i>확정</span>
+        <span class="nb-kpi-num"><span data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=확정">—</span><small>건</small></span>
+        <span class="nb-kpi-sub">본인 제출 또는 기존 분담표로 확인</span>
+      </button>
+      <button type="button" class="nb-kpi is-warn" id="kpi-check" data-status-jump="확인필요">
+        <span class="nb-kpi-label"><i class="nb-dot warn"></i>확인필요</span>
+        <span class="nb-kpi-num"><span data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=확인필요">—</span><small>건</small></span>
+        <span class="nb-kpi-sub">담당·주기 확인 필요</span>
+      </button>
+      <button type="button" class="nb-kpi is-bad" id="kpi-none" data-status-jump="미배정">
+        <span class="nb-kpi-label"><i class="nb-dot bad"></i>미배정</span>
+        <span class="nb-kpi-num"><span data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=미배정">—</span><small>건</small></span>
+        <span class="nb-kpi-sub">담당자 미정 (주담당 빈칸)</span>
+      </button>
+    </div>
+    <div class="nb-statusbar" id="statusbar" data-draw="statusbar" role="img" aria-label="확정·확인필요·미배정 업무 비율"></div>
+  </section>
+
+  <nav class="nb-tabs" id="tabs" role="tablist" aria-label="보기 선택">
+    <button type="button" class="nb-tab is-active" role="tab" data-tab="overview" aria-selected="true" aria-controls="overview">한눈에 보기</button>
+    <button type="button" class="nb-tab" role="tab" data-tab="people" aria-selected="false" aria-controls="people">교역자별 업무</button>
+    <button type="button" class="nb-tab" role="tab" data-tab="services" aria-selected="false" aria-controls="services">예배별 담당</button>
+    <button type="button" class="nb-tab" role="tab" data-tab="week" aria-selected="false" aria-controls="week">주간 일정</button>
+    <button type="button" class="nb-tab" role="tab" data-tab="year" aria-selected="false" aria-controls="year">연간 일정</button>
+    <button type="button" class="nb-tab" role="tab" data-tab="todo" aria-selected="false" aria-controls="todo">정해야 할 업무<span class="nb-tab-n" data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=미확정">—</span></button>
+    <button type="button" class="nb-tab" role="tab" data-tab="all" aria-selected="false" aria-controls="all">전체 업무 찾기</button>
+    <button type="button" class="nb-tab" role="tab" data-tab="history" aria-selected="false" aria-controls="history">변경 기록</button>
+  </nav>
+
+  <!-- 한눈에 보기 -->
+  <section class="nb-panel" id="overview" role="tabpanel" aria-label="한눈에 보기">
+    <div class="nb-grid2">
+      <article class="nb-card" id="card-people">
+        <div class="nb-card-head">
+          <h2 class="nb-h2">누가 얼마나 맡고 있나</h2>
+          <p class="nb-sub">주담당 업무 수를 주기별로 쌓았고, 빗금은 협력 업무입니다. 이름을 누르면 그 사람의 업무 목록이 열립니다.</p>
+        </div>
+        <div class="nb-legend"><span><i class="nb-sw s0"></i>정기</span><span><i class="nb-sw s1"></i>수시</span><span><i class="nb-sw s2"></i>특별절기</span><span><i class="nb-sw nb-sw-coop"></i>협력</span></div>
+        <div class="nb-chart" id="chart-people" data-draw="chart-people" role="img" aria-label="교역자별 주담당·협력 업무 수 막대그래프"></div>
+        <p class="nb-foot">두 명 이상이 함께 맡은 업무는 각자 1건으로 셉니다. 교역자 명단에 없는 사람이 주담당인 업무는 '성도 봉사'로 묶었습니다.</p>
+      </article>
+      <article class="nb-card" id="card-cats">
+        <div class="nb-card-head">
+          <h2 class="nb-h2">부서별 업무와 진행 상태</h2>
+          <p class="nb-sub">2027 위원회 조직 기준 카테고리입니다. 부서 이름을 누르면 그 부서 업무만 모아 봅니다.</p>
+        </div>
+        <div class="nb-legend"><span><i class="nb-sw ok"></i>확정</span><span><i class="nb-sw warn"></i>확인필요</span><span><i class="nb-sw bad"></i>미배정</span></div>
+        <div class="nb-chart" id="chart-cats" data-draw="chart-cats" role="img" aria-label="부서별 확정·확인필요·미배정 업무 수 막대그래프"></div>
+      </article>
+    </div>
+    <div class="nb-grid2">
+      <article class="nb-card nb-callout" id="card-gap">
+        <div class="nb-card-head">
+          <h2 class="nb-h2">예전 부목사 업무 인수 현황</h2>
+          <p class="nb-sub">비고에 예전 담당이 부목사로 적힌 업무</p>
+        </div>
+        <p>부목사가 맡던 업무 <b data-draw="num" data-source="former_assoc" data-field="건수" data-where="상태=전체">—</b>건 가운데 <b data-draw="num" data-source="former_assoc" data-field="건수" data-where="상태=확정">—</b>건은 새 담당이 확정됐고, <b class="t-bad" data-draw="num" data-source="former_assoc" data-field="건수" data-where="상태=미배정">—</b>건은 아직 담당자가 없으며, <b data-draw="num" data-source="former_assoc" data-field="건수" data-where="상태=확인필요">—</b>건은 확인이 필요합니다.</p>
+        <button type="button" class="nb-btn" data-goto="todo">정해야 할 업무 목록 보기 →</button>
+      </article>
+      <article class="nb-card" id="card-upcoming">
+        <div class="nb-card-head">
+          <h2 class="nb-h2">다가오는 교회 일정</h2>
+          <p class="nb-sub">오늘 이후 이번 달과 다음 달 · 연간 스케줄러 기준</p>
+        </div>
+        <ul class="nb-events" id="upcoming" data-draw="upcoming"></ul>
+        <button type="button" class="nb-btn" data-goto="year">연간 일정 전체 보기 →</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- 교역자별 -->
+  <section class="nb-panel" id="people" role="tabpanel" aria-label="교역자별 업무" hidden>
+    <div class="nb-row-between">
+      <p class="nb-intro">이름을 고르면 그 사람이 맡은 업무와 한 주 일정이 나옵니다. 숫자는 주담당 업무 수입니다.</p>
+      <button type="button" class="nb-btn nb-btn-sm" id="staff-manage">교역자 명단 관리</button>
+    </div>
+    <div class="nb-chips" id="person-chips" data-draw="person-chips" role="group" aria-label="교역자 선택"></div>
+    <div class="nb-person-head" id="person-head">
+      <h2 class="nb-person-name" data-draw="person-name">—</h2>
+      <p class="nb-person-sum">주담당 <b data-draw="person-lead">—</b>건 · 협력 <b data-draw="person-coop">—</b>건</p>
+    </div>
+    <article class="nb-card" id="person-week-card">
+      <div class="nb-row-between">
+        <div class="nb-card-head">
+          <h3 class="nb-h3">한 주 일정</h3>
+          <p class="nb-sub">주간 일정(본인 제출 내용) 기준</p>
+        </div>
+        <span data-draw="person-week-edit"></span>
+      </div>
+      <div class="nb-weekstrip" id="person-week" data-draw="person-week"></div>
+    </article>
+    <div class="nb-groups">
+      <article class="nb-card" id="grp-regular">
+        <div class="nb-group-h"><i class="nb-sw s0"></i><h3 class="nb-h3">정기 업무</h3><span class="nb-sub">매일·매주·매월 반복</span></div>
+        <ul class="nb-tasks" data-draw="person-tasks" data-kind="정기"></ul>
+      </article>
+      <article class="nb-card" id="grp-anytime">
+        <div class="nb-group-h"><i class="nb-sw s1"></i><h3 class="nb-h3">수시·상시 업무</h3><span class="nb-sub">필요할 때마다</span></div>
+        <ul class="nb-tasks" data-draw="person-tasks" data-kind="수시"></ul>
+      </article>
+      <article class="nb-card" id="grp-season">
+        <div class="nb-group-h"><i class="nb-sw s2"></i><h3 class="nb-h3">특별절기·연간 업무</h3><span class="nb-sub">절기·행사·연말연초</span></div>
+        <ul class="nb-tasks" data-draw="person-tasks" data-kind="특별절기"></ul>
+      </article>
+      <details class="nb-details" id="person-common">
+        <summary>모든 교역자 공통 업무<span class="nb-sub">게시판·사무실 정리 등, 주담당이 '교역자 공통'인 업무</span></summary>
+        <div class="nb-details-body"><ul class="nb-tasks" data-draw="common-tasks"></ul></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 예배별 -->
+  <section class="nb-panel" id="services" role="tabpanel" aria-label="예배별 담당" hidden>
+    <div class="nb-row-between">
+      <p class="nb-intro">예배마다 누가 어떤 역할을 맡는지 모았습니다. 카드의 '수정'을 누르면 바로 고칠 수 있어요.</p>
+      <button type="button" class="nb-btn nb-btn-sm" id="service-add">+ 예배 추가</button>
+    </div>
+    <div class="nb-svc-flags"><span class="nb-pill bad">미배정</span><span class="nb-sub">담당자 지정 필요</span><span class="nb-pill warn">(?)</span><span class="nb-sub">주기·순번 확인 필요</span></div>
+    <div class="nb-svc-grid" id="svc-grid" data-draw="services"></div>
+  </section>
+
+  <!-- 주간 일정 -->
+  <section class="nb-panel" id="week" role="tabpanel" aria-label="주간 일정" hidden>
+    <p class="nb-intro">요일을 고르면 그날 누가 무엇을 하는지 보여 줍니다. 처음에는 오늘 요일이 선택돼 있습니다.</p>
+    <div class="nb-chips nb-daychips" id="day-chips" role="group" aria-label="요일 선택">
+      <button type="button" class="nb-chip" data-day-chip="주일" aria-pressed="false">주일</button>
+      <button type="button" class="nb-chip" data-day-chip="월" aria-pressed="false">월</button>
+      <button type="button" class="nb-chip" data-day-chip="화" aria-pressed="false">화</button>
+      <button type="button" class="nb-chip" data-day-chip="수" aria-pressed="false">수</button>
+      <button type="button" class="nb-chip" data-day-chip="목" aria-pressed="false">목</button>
+      <button type="button" class="nb-chip" data-day-chip="금" aria-pressed="false">금</button>
+      <button type="button" class="nb-chip" data-day-chip="토" aria-pressed="false">토</button>
+    </div>
+    <div class="nb-day-grid" id="week-day" data-draw="week-day"></div>
+    <div class="nb-note" id="week-note" data-draw="week-note">—</div>
+    <details class="nb-details" id="week-full">
+      <summary>한 주 전체를 표로 보기</summary>
+      <div class="nb-details-body">
+        <div class="nb-tablewrap">
+          <table class="nb-table nb-weektable">
+            <thead><tr><th data-field="교역자">교역자</th><th data-field="주일">주일</th><th data-field="월">월</th><th data-field="화">화</th><th data-field="수">수</th><th data-field="목">목</th><th data-field="금">금</th><th data-field="토">토</th></tr></thead>
+            <tbody data-draw="week-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+    <p class="nb-foot">제출 내용 기준이며 새벽 설교 요일은 설교 순서표를 따릅니다. 행정간사 회의록 정리는 회의가 있는 날마다(주 3~4회) 합니다.</p>
+  </section>
+
+  <!-- 연간 일정 -->
+  <section class="nb-panel" id="year" role="tabpanel" aria-label="연간 일정" hidden>
+    <p class="nb-intro">특별절기·연간 업무를 달별로 봅니다. 매주 반복하는 업무는 '교역자별 업무'에 있습니다. 2027년 3월 이후 날짜는 2026 연간계획과 2027 달력을 기준으로 한 예상입니다.</p>
+    <div class="nb-monthchips" id="month-chips" data-draw="month-chips" role="group" aria-label="달 선택"></div>
+    <h2 class="nb-h2" id="month-title" data-draw="month-title">—</h2>
+    <div class="nb-grid2">
+      <article class="nb-card" id="month-events-card">
+        <div class="nb-row-between"><h3 class="nb-h3">교회 일정</h3><button type="button" class="nb-btn nb-btn-sm" id="event-add">+ 일정 추가</button></div>
+        <ul class="nb-events" data-draw="month-events"></ul>
+      </article>
+      <article class="nb-card" id="month-jobs-card">
+        <div class="nb-row-between"><h3 class="nb-h3">이 달의 교역자 업무</h3><button type="button" class="nb-btn nb-btn-sm" id="annual-add">+ 연간 업무 추가</button></div>
+        <ul class="nb-tasks" data-draw="month-jobs"></ul>
+      </article>
+    </div>
+    <details class="nb-details" id="year-full">
+      <summary>전체 달을 표로 보기</summary>
+      <div class="nb-details-body">
+        <div class="nb-tablewrap">
+          <table class="nb-table nb-yeartable">
+            <thead data-draw="year-head"></thead>
+            <tbody data-draw="year-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+    <p class="nb-foot">쏠라티 보험 갱신(갱신 시), 현수막·포스터(행사 3주 전)처럼 시기가 정해지지 않은 업무는 연간 표에서 뺐습니다. 점(●)은 그 달에 진행한다는 뜻입니다.</p>
+  </section>
+
+  <!-- 정해야 할 업무 -->
+  <section class="nb-panel" id="todo" role="tabpanel" aria-label="정해야 할 업무" hidden>
+    <p class="nb-intro">담당자가 없거나(미배정) 담당·주기를 확인해야 하는(확인필요) 업무만 부서별로 모았습니다. 회의 때 이 목록을 띄워 놓고 바로 '수정'을 눌러 정하면 모두의 화면에 즉시 반영돼요.</p>
+    <div class="nb-grid2">
+      <article class="nb-card" id="todo-none">
+        <div class="nb-group-h"><span class="nb-pill bad">미배정</span><h3 class="nb-h3">담당자 지정 필요 <b data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=미배정">—</b>건</h3></div>
+        <div data-draw="todo" data-status="미배정"></div>
+      </article>
+      <article class="nb-card" id="todo-check">
+        <div class="nb-group-h"><span class="nb-pill warn">확인필요</span><h3 class="nb-h3">담당·주기 확인 <b data-draw="num" data-source="status_counts" data-field="건수" data-where="상태=확인필요">—</b>건</h3></div>
+        <div data-draw="todo" data-status="확인필요"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 전체 업무 찾기 -->
+  <section class="nb-panel" id="all" role="tabpanel" aria-label="전체 업무 찾기" hidden>
+    <div class="nb-filters" id="filters">
+      <label class="nb-field nb-field-q" for="f-q">검색<input type="search" id="f-q" placeholder="업무, 담당자, 비고에서 찾기" autocomplete="off"></label>
+      <label class="nb-field" for="f-cat">부서<select class="nb-select" id="f-cat" data-draw="opt-cat"></select></label>
+      <label class="nb-field" for="f-who">담당자<select class="nb-select" id="f-who" data-draw="opt-who"></select></label>
+      <label class="nb-field" for="f-st">상태<select class="nb-select" id="f-st"><option value="">전체</option><option value="확정">확정</option><option value="확인필요">확인필요</option><option value="미배정">미배정</option></select></label>
+      <label class="nb-field" for="f-kind">주기<select class="nb-select" id="f-kind"><option value="">전체</option><option value="정기">정기</option><option value="수시">수시</option><option value="특별절기">특별절기</option></select></label>
+      <button type="button" class="nb-btn" id="f-reset">조건 지우기</button>
+      <button type="button" class="nb-btn nb-btn-primary" id="task-add">+ 새 업무 추가</button>
+    </div>
+    <p class="nb-count" id="all-count"><b data-draw="num" data-source="shown_count">—</b>건이 조건에 맞습니다. 담당자로 고르면 주담당과 협력 업무를 모두 보여 줍니다.</p>
+    <div class="nb-tablewrap">
+      <table class="nb-table nb-resp" id="all-table">
+        <thead><tr><th>No</th><th>상태</th><th>부서</th><th>중분류</th><th>세부 업무</th><th>주기·시기</th><th>주담당</th><th>협력</th><th>비고</th><th><span class="nb-sr">수정</span></th></tr></thead>
+        <tbody data-draw="all-table"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 변경 기록 -->
+  <section class="nb-panel" id="history" role="tabpanel" aria-label="변경 기록" hidden>
+    <div class="nb-row-between">
+      <p class="nb-intro">누가 언제 무엇을 바꿨는지 최근 순서로 보여 줍니다. 실수로 바뀐 내용은 '되돌리기'를 누르면 바꾸기 전으로 돌아갑니다.</p>
+      <button type="button" class="nb-btn nb-btn-sm" id="history-refresh">새로 고침</button>
+    </div>
+    <ul class="nb-log" id="history-list" data-draw="history"></ul>
+  </section>
+
+  <footer class="nb-footer">
+    <span>늘샘교회 교역자 공통업무 분장표</span>
+    <span id="footer-updated"></span>
+  </footer>
+</div>
+
+<dialog class="nb-dialog" id="dlg" aria-labelledby="dlg-title"></dialog>
+<div class="nb-toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="./config.js"></script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

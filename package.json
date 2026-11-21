@@ -1,0 +1,19 @@
+{
+  "name": "neulsaem-duty-board",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "seed": "node scripts/seed.mjs",
+    "deploy": "sh scripts/deploy-pages.sh"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.45.4"
+  },
+  "devDependencies": {
+    "vite": "5.4.10"
+  }
+}
