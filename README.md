@@ -9,10 +9,11 @@
 
 ## 지금 올라가 있는 곳 (GitHub Pages)
 - 주소: https://woojae1016-art.github.io/duty-board/
-- Supabase를 연결하기 전이라 **보기 전용**입니다 (수정 버튼이 보이지 않음).
-- 내용을 고쳐서 다시 올릴 때: `npm run deploy` (빌드한 뒤 `gh-pages` 브랜치로 올림, 1~2분 뒤 반영)
+- 데이터: Supabase 프로젝트 `duty-board` (무료 요금제, 서울). 아래 1~3단계는 이미 끝났습니다.
+- 링크를 아는 사람은 누구나 보고 고칠 수 있습니다. 고친 내용은 모든 사람 화면에 바로 반영됩니다.
+- 화면 코드를 고쳐서 다시 올릴 때: `npm run deploy` (빌드한 뒤 `gh-pages` 브랜치로 올림, 1~2분 뒤 반영)
 - 검색엔진에는 나오지 않도록 `noindex`를 넣어 두었습니다. 다만 저장소가 공개라 주소를 아는 사람은 볼 수 있습니다.
-- Supabase를 연결하면(아래 1~3단계) `public/config.js`에 값을 넣고 `npm run deploy` 하면 같은 주소에서 수정 기능이 켜집니다.
+- `public/config.js`를 비우고 빌드하면 보기 전용이 됩니다.
 
 ## 처음 한 번 설정
 
